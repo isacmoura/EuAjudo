@@ -2,12 +2,15 @@ function popularUFs() {
     const ufSelect = document.querySelector("select[name=uf]")
 
     fetch("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
-    .then( (res) => {res.json()} )
-    .then( (states) => {
-        for( const estado of states ) {
-            ufSelect.innerHTML += `<option value="${estado.id}"> ${estado.name}<\option>`
-        }
-    })
+    .then(async (res) => {
+        const data = await res.json()
+        for (const estado of data){
+            var opt = document.createElement('option');
+            opt.id = estado.id;
+            opt.value = estado.nome;
+            opt.innerHTML = estado.nome;
+            ufSelect.appendChild(opt);
+    } })
 }
 
 function getCidades(event) {
@@ -36,4 +39,6 @@ document
     .querySelector("select[name=uf]")
     .addEventListener("change", getCidades)
 
-
+window.addEventListener('load', function() {
+    popularUFs()
+})
