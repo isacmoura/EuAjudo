@@ -2,35 +2,37 @@ const connection = require('../db/index');
 
 module.exports = {
     async create(request, response) {
-        const user = request.body;
-
+        const org = request.body;
+        
         const result = await connection('user').insert(
-            user.name,
-            user.cpf,
-            user.email,
-            user.password,
-            user.phone,
-            user.address,
-            user.number,
-            user.complement,
-            user.zipcode,
-            user.neighborhood,
-            user.city,
-            user.uf
+            org.name,
+            org.responsible,
+            org.email,
+            org.password,
+            org.phone,
+            org.address,
+            org.number,
+            org.complement,
+            org.zipcode,
+            org.neighborhood,
+            org.city,
+            org.uf,
+            org.cnpj,
+            org.type,
         );
         
         return response.json({ result });
     },
 
-    async get_users(request, response) {
+    async get_all_orgs(request, response) {
 
     },
 
-    async get_users(request, response) {
+    async get_org(request, response) {
 
     },
 
-    async get_cases(request, response) {
+    async get_org_cases(request, response) {
         
     },
 

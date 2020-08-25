@@ -2,54 +2,103 @@ const connection = require('../db/index');
 
 module.exports = {
     async create(request, response) {
-        const user = request.body;
 
-        const result = await connection('user').insert(
-            user.name,
-            user.cpf,
-            user.email,
-            user.password,
-            user.phone,
-            user.address,
-            user.number,
-            user.complement,
-            user.zipcode,
-            user.neighborhood,
-            user.city,
-            user.uf
-        );
-        
-        return response.json({ result });
+        try {
+            const { name, cpf, email, password, phone, address, number, complement, zipcode, 
+                neighborhood, city, uf
+            } = request.body;
+    
+            const result = await connection('user').insert({
+                name,
+                cpf,
+                email,
+                password,
+                phone,
+                address,
+                number,
+                complement,
+                zipcode,
+                neighborhood,
+                city,
+                uf
+            });
+
+            return response.json("Usuário cadastrado com sucesso");
+        } catch (error) {
+            return response.json(`O seguinte erro ocorreu: ${error.message}`);
+        }
     },
 
-    async get_users(request, response) {
+    async get_all_users(request, response) {
+        try {
+            const results = await connection('user');
 
+            return response.json(results);
+        } catch (error) {
+            return response.json(`O seguinte erro ocorreu: ${error.message}`);
+        }
     },
 
-    async get_users(request, response) {
+    async get_user(request, response) {
+        try {
+            const id = request.params.id;
+            const result = await connection('user').where({ id });
 
+            return response.json(result);
+        } catch (error) {
+            return response.json(`O seguinte erro ocorreu: ${error.message}`);
+        }
     },
 
     async get_cases(request, response) {
-        
+        try {
+            const id = request.params.id;
+
+            const result = await connection('users_cases').where('user_id', id);
+
+            return response.json(result);
+        } catch (error) {
+            return response.json(`O seguinte erro ocorreu: ${error.message}`);
+        }
     },
 
     async update(request, response) {
+        try {
+            const id = request.params.id;
+            const { name, cpf, email, password, phone, address, number, complement, zipcode, 
+                neighborhood, city, uf
+            } = request.body;
+    
+            const result = await connection('user').update({
+                name,
+                cpf,
+                email,
+                password,
+                phone,
+                address,
+                number,
+                complement,
+                zipcode,
+                neighborhood,
+                city,
+                uf
+            }).where({ id });
 
+            return response.json(result);
+        } catch (error) {
+            return response.json(`O seguinte erro ocorreu: ${error.message}`);
+        }
     },
 
     async delete(request, response) {
-        const { id } = request.params;
-        const user_id = request.headers.authorization;
+        try {
+            const { id } = request.params;
 
-        const user = await connection('incidents').where('id', id).select('ong_id').first();
-        
-        if(incident.ong_id != ong_id) {
-            return response.status(401).json({ error: 'Unauthorized' });
+            await connection('user').where({ id }).delete();
+            
+            return response.json("Usuário excluído com sucesso"); 
+        } catch (error) {
+            return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }
-
-        await connection('incidents').where('id', id).delete();
-        
-        return response.status(204).send();
     }
 }
