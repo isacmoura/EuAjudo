@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/pagina-registro.css">
+
+</head>
+
+<body>
+
+    <div id="pagina-registro">
+        <header>
+            <a href="http://127.0.0.1:5500/EuAjudo/frontend/pagina-inicial.html">
+                Voltar ao início
+            </a>
+        </header>
+
+        <form action="">
+            <h1>Cadastro do usuário</h1>
+
+            <fieldset>
+                <legend>
+                    <h2>Dados</h2>
+                </legend>
+
+
+
+
+                <div class="field">
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome">
+                </div>
+
+
+
+
+                
+                <div class="field">
+                    <label for="endereco">Endereço</label>
+                    <input type="text" name="endereco">
+                </div>
+                
+                <div class="field">
+                    <label for="end2">Número/Complemento</label>
+                    <input type="text" name="end2">
+                </div>
+
+
+
+                
+                <div class="grupo-contato">
+                    <div class="field">
+                        <label for="contato">Contato</label>
+                        <input type="tel" name="contato">
+                    </div>
+
+                    <div class="field">
+                        <label for="email">E-mail</label>
+                        <input type="email" name="email">
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <div class="field">
+                        <label for="estado">UF</label>
+                        <select name="uf">
+                            <option value="">Selecione o estado</option>
+                        </select>
+
+                        <input type="hidden" name="estado">
+                    </div>
+
+                    <div class="field">
+                        <label for="cidade">Cidade</label>
+                        <select name="cidade" disabled>
+                            <option value="">Selecione a cidade</option>
+                        </select>                                     
+                    </div>
+                </div>
+            </fieldset>
+
+            <button type="submit">Cadastrar</button>
+
+        </form>
+    
+    </div>
+    
+    <script src="scripts/pagina-registro.js"></script>
+</body>
+</html>

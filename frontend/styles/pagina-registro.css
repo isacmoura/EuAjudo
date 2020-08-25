@@ -1,0 +1,131 @@
+html {
+    background-color: whitesmoke;
+    font-family: 'Roboto', sans-serif; 
+}
+#pagina-registro {
+    width: 90%;
+    max-width: 1100px;
+
+
+    /* Alinhamento da caixa (pelo lado de fora da caixa) */
+    margin: 0 auto;    
+}
+
+#pagina-registro header {
+    margin-top: 48px;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+#pagina-registro header a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+form {
+    background-color: white;
+
+    margin: 80px auto;
+    padding: 16px;
+    
+    border-radius: 8px;
+
+    max-width: 730px;
+
+    box-sizing: border-box;
+    
+}
+
+#pagina-registro form h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 36px;
+    color: #2fe79e;
+}
+
+form fieldset {
+    margin-top: 60px;
+    
+    border: 0;
+}
+
+form legend {
+    margin-bottom: 40px;
+}
+
+form legend h2 {
+    font-size: 24px;
+    color: #2fe79e
+}
+
+form .field {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 24px;
+}
+
+form .grupo-contato {
+    display: flex;
+}
+
+form .field-group {
+    display: flex;
+}
+
+
+form input,
+form select {
+    background-color: rgb(233, 241, 236);
+
+    border: 0;
+    padding: 16px 24px;
+    font-size: 16px;
+
+    border-radius: 8px;
+}
+
+form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+form label {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+form .grupo-contato .field + .field {
+    margin-left: 15px;
+}
+
+form .field-group .field + .field {
+    margin-left: 15px;
+}
+
+form button {
+    width: 280px;
+    height: 56px;
+
+    background-color: #2fe79e;
+    border-radius: 8px;
+
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+
+    border: 0;
+
+    margin-top: 40px;
+
+    transition: 400ms;
+}
+
+form button:hover {
+    background-color: rgb(20, 179, 179);
+}
