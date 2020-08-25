@@ -4,7 +4,7 @@ exports.up = function(knex) {
         table.increments('id').primary();
         table.string('title').notNullable();
         table.string('description').notNullable();
-        table.string('org_id').notNullable();
+        table.integer('org_id').notNullable();
         table.timestamp('created_at').defaultTo(knex.fn.now());
         table.timestamp('updated_at').defaultTo(knex.fn.now());
         table.foreign('org_id').references('id').inTable('organization');
@@ -12,5 +12,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  
+    return knex.schema.dropTable('case');
 };
