@@ -10,7 +10,7 @@ exports.up = function(knex) {
       table.string('address').notNullable();
       table.integer('number').notNullable();
       table.string('complement');
-      table.string('zipcode');
+      table.string('zipcode').notNullable();
       table.string('neighborhood').notNullable();
       table.string('city').notNullable();
       table.string('uf', 2).notNullable();
