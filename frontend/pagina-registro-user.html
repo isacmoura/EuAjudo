@@ -9,7 +9,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="styles/pagina-registro.css">
+    <link rel="stylesheet" href="styles/pagina-registro-user.css">
 
 </head>
 
@@ -39,25 +39,33 @@
                     <label for="endereco">Endereço</label>
                     <input type="text" name="endereco" required>
                 </div>
-                
-                <div class="field">
-                    <label for="num">Número</label>
-                    <input type="text" name="num" required>
+
+                <div class="grupo-contato1">
+                    <div class="field">
+                        <label for="num">Número</label>
+                        <input type="text" name="num" required>
+                    </div>
+    
+                    <div class="field">
+                        <label for="comp">Complemento</label>
+                        <input type="text" name="comp">
+                    </div>
                 </div>
 
                 <div class="field">
-                    <label for="comp">Complemento</label>
-                    <input type="text" name="comp">
+                    <label for="contato">Contato</label>
+                    <input type="tel" name="contato" required>
+                </div>
 
                 <div class="grupo-contato">
                     <div class="field">
-                        <label for="contato">Contato</label>
-                        <input type="tel" name="contato" required>
+                        <label for="email">E-mail</label>
+                        <input type="email" name="email" required>
                     </div>
 
                     <div class="field">
-                        <label for="email">E-mail</label>
-                        <input type="email" name="email" required>
+                        <label for="senha">Senha</label>
+                        <input type="text" name="senha" required>
                     </div>
                 </div>
 
@@ -85,6 +93,6 @@
     
     </div>
     
-    <script src="scripts/pagina-registro.js"></script>
+    <script src="scripts/pagina-registro-user.js"></script>
 </body>
 </html>

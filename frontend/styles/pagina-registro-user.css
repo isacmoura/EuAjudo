@@ -56,7 +56,7 @@ form legend {
 }
 
 form legend h2 {
-    font-size: 24px;
+    font-size: 26px;
     color: #2fe79e
 }
 
@@ -74,6 +74,10 @@ form .grupo-contato {
 }
 
 form .field-group {
+    display: flex;
+}
+
+form .grupo-contato1 {
     display: flex;
 }
 
@@ -105,6 +109,10 @@ form .grupo-contato .field + .field {
 }
 
 form .field-group .field + .field {
+    margin-left: 15px;
+}
+
+form .grupo-contato1 .field + .field {
     margin-left: 15px;
 }
 
