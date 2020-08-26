@@ -37,7 +37,7 @@ function getCidades(event) {
 
 document
     .querySelector("select[name=uf]")
-    .addEventListener("change", getCidades)
+    .addEventListener("change", getCidades())
 
 window.addEventListener('load', function() {
     popularUFs()

@@ -30,40 +30,34 @@
                     <h2>Dados</h2>
                 </legend>
 
-
-
-
                 <div class="field">
                     <label for="nome">Nome</label>
-                    <input type="text" name="nome">
+                    <input type="text" name="nome" required>
                 </div>
-
-
-
-
                 
                 <div class="field">
                     <label for="endereco">Endereço</label>
-                    <input type="text" name="endereco">
+                    <input type="text" name="endereco" required>
                 </div>
                 
                 <div class="field">
-                    <label for="end2">Número/Complemento</label>
-                    <input type="text" name="end2">
+                    <label for="num">Número</label>
+                    <input type="text" name="num" required>
                 </div>
 
+                <div class="field">
+                    <label for="comp">Complemento</label>
+                    <input type="text" name="comp">
 
-
-                
                 <div class="grupo-contato">
                     <div class="field">
                         <label for="contato">Contato</label>
-                        <input type="tel" name="contato">
+                        <input type="tel" name="contato" required>
                     </div>
 
                     <div class="field">
                         <label for="email">E-mail</label>
-                        <input type="email" name="email">
+                        <input type="email" name="email" required>
                     </div>
                 </div>
 
@@ -71,7 +65,7 @@
                     <div class="field">
                         <label for="estado">UF</label>
                         <select name="uf">
-                            <option value="">Selecione o estado</option>
+                            <option value="">Selecione o estado</option required>
                         </select>
                         <input type="hidden" name="estado">
                     </div>
@@ -79,7 +73,7 @@
                     <div class="field">
                         <label for="cidade">Cidade</label>
                         <select name="cidade" disabled>
-                            <option value="">Selecione a cidade</option>
+                            <option value="">Selecione a cidade</option required>
                         </select>                                     
                     </div>
                 </div>

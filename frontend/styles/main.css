@@ -1,6 +1,6 @@
 html {
     font-family: 'Roboto', sans-serif;
-    color: white;
+    color: aqua;
 
 }
 
@@ -17,4 +17,19 @@ html {
 
 body {
     background-color: aqua;
+}
+
+#pagina-inicial button {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    border: 0;
+    border-radius: 8px;
+    width: 200px;
+    height: 30px;
+    align-items: center;
+    font-size: 15px;
+    color: aqua;
+    background-color: white;
+}
 }
