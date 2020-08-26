@@ -18,6 +18,10 @@ routes.get('/users', UserController.get_all_users);
 
 routes.get('/users/:id', UserController.get_user);
 
+routes.get('/help/:user_id/:case_id', UserController.help_case);
+
+routes.get('/users/:id/cases', UserController.get_all_user_cases);
+
 routes.post('/users', celebrate({
     [Segments.BODY]: Joi.object().keys({
         name: Joi.string().required(),
@@ -54,6 +58,7 @@ routes.put('/users/:id', celebrate({
 
 routes.delete('/users/:id', UserController.delete);
 
+routes.delete('/help/:user_id/:case_id', UserController.delete_cause);
 
 routes.get('/orgs', OrgController.get_all_orgs);
 
@@ -99,26 +104,28 @@ routes.put('/orgs/:id', celebrate({
 
 routes.delete('/orgs/:id', OrgController.delete);
 
-// routes.post('/cases', celebrate({
-//     [Segments.HEADERS]: Joi.object({authorization: Joi.string().required()}).unknown(),
-//     [Segments.BODY]: Joi.object().keys({
-//         title: Joi.string().required(),
-//         description: Joi.string().required(),
-//         value: Joi.number().required()
-//     })
-// }), CaseController.create);
 
-// routes.get('/cases', celebrate({
-//     [Segments.QUERY]: Joi.object().keys({
-//         page: Joi.number()
-//     })
-// }), CaseController.index);
+routes.get('/cases', CaseController.get_all_cases);
 
-// routes.delete('/cases/:id', celebrate({
-//     [Segments.PARAMS]: Joi.object().keys({
-//         id: Joi.number().required()
-//     })
-// }), CaseController.delete);
+routes.get('/cases/org/:org_id', CaseController.get_cases_from_org);
+
+routes.get('/cases/:id', CaseController.get_case)
+
+routes.post('/cases/:org_id', celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        title: Joi.string().required(),
+        description: Joi.string().required(),
+    })
+}), CaseController.create);
+
+routes.put('/cases/:id', celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        title: Joi.string(),
+        description: Joi.string(),
+    })
+}), CaseController.update);
+
+routes.delete('/cases/:id', CaseController.delete);
 
 // routes.get('/profile', celebrate({
 //     [Segments.HEADERS]: Joi.object({authorization: Joi.string().required()}).unknown()
