@@ -1,30 +1,29 @@
 const connection = require('../db/index');
 
 module.exports = {
-    async create(request, response) {
+    async login(request, response) {
         try {
-            const { name, email, password, phone, address, number, complement, city, uf } = request.body;
+            const { name, responsible, email, password, phone, address, number, complement, zipcode, 
+                neighborhood, city, uf, cnpj, type
+            } = request.body;
             
             const result = await connection('organization').insert({
                 name,
+                responsible,
                 email,
                 password,
                 phone,
                 address,
                 number,
                 complement,
+                zipcode,
+                neighborhood,
                 city,
                 uf,
-            }).returning(['id', 'name']).then((async function(res) {
-                var reg = res[0]
-                // Salvando log
-                await connection('log').insert({
-                    title: 'Criação de organização',
-                    description: `A organização ${reg.name} se cadastrou no sistema`,
-                    org_id: reg.id
-                });
-            }));
-
+                cnpj,
+                type,
+            });
+            
             return response.json("Organização cadastrada com sucesso");
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
@@ -55,29 +54,28 @@ module.exports = {
     async update(request, response) {
         try {
             const id = request.params.id;
-            const { name, email, password, phone, address, number, complement, city, uf } = request.body;
+            const { name, responsible, email, password, phone, address, number, complement, zipcode, 
+                neighborhood, city, uf, cnpj, type
+            } = request.body;
             
             const result = await connection('organization').update({
                 name,
+                responsible,
                 email,
                 password,
                 phone,
                 address,
                 number,
                 complement,
+                zipcode,
+                neighborhood,
                 city,
                 uf,
-            }).where({ id }).returning(['id', 'name']).then((async function(res) {
-                var reg = res[0]
-                // Salvando log
-                await connection('log').insert({
-                    title: 'Atualização de organização',
-                    description: `A organização ${reg.name} atualizou informações`,
-                    org_id: res.id
-                });
-            }));;
+                cnpj,
+                type,
+            }).where({ id });
             
-            return response.json("Organização atualizada com sucesso");
+            return response.json(result);
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }
@@ -87,16 +85,7 @@ module.exports = {
         try {
             const { id } = request.params;
 
-            await connection('organization').where({ id }).delete().returning(['id', 'name'])
-            .then((async function(res) {
-                var reg = res[0]
-                // Salvando log
-                await connection('log').insert({
-                    title: 'Organização excluída',
-                    description: `A organização de identificador ${reg.name} saiu do sistema`,
-                    org_id: res.id
-                });
-            }));;;
+            await connection('organization').where({ id }).delete();
             
             return response.json("Organização excluída com sucesso"); 
         } catch (error) {

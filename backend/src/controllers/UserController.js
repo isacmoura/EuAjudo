@@ -1,27 +1,31 @@
 const connection = require('../db/index');
 const { use } = require('../routes');
+const { connect } = require('../app');
 
 module.exports = {
     async create(request, response) {
         try {
-            const { name, cpf, email, password, phone, address, number, complement, zipcode, 
-                neighborhood, city, uf
-            } = request.body;
+            const { name, email, password, phone, address, number, complement, city, uf } = request.body;
     
             const result = await connection('user').insert({
                 name,
-                cpf,
                 email,
                 password,
                 phone,
                 address,
                 number,
                 complement,
-                zipcode,
-                neighborhood,
                 city,
                 uf
-            });
+            }).returning(['id', 'name']).then((async function(res) {
+                var reg = res[0]
+                // Salvando log
+                await connection('log').insert({
+                    title: 'Criação de usuário',
+                    description: `O usuário ${reg.name} se cadastrou no sistema`,
+                    user_id: reg.id
+                });
+            }));;
 
             return response.json("Usuário cadastrado com sucesso");
         } catch (error) {
@@ -35,6 +39,22 @@ module.exports = {
             const case_id = request.params.case_id;
 
             const result = await connection('users_cases').insert({ user_id, case_id });
+            // Salvando log
+
+            let reg = await connection('users_cases')
+                .select(['title', 'description', 'name', 'users_cases.id', 'users_cases.created_at'])
+                .join('user AS us', 'us.id', '=', 'users_cases.user_id')
+                .join('case AS c', 'c.id', '=', 'users_cases.case_id')
+                .where('user_id', user_id)
+                .orderBy('created_at', 'desc')
+                .limit(1);
+
+            let res = reg[0];
+            await connection('log').insert({
+                title: 'Ajuda obtida',
+                description: `O usuário ${res.name} se voluntariou na ação ${res.title} às ${res.created_at}`,
+                user_id: reg.id
+            });
 
             return response.json("Usuário se voluntariou a uma causa");
         } catch (error) {
@@ -90,24 +110,28 @@ module.exports = {
     async update(request, response) {
         try {
             const id = request.params.id;
-            const { name, cpf, email, password, phone, address, number, complement, zipcode, 
-                neighborhood, city, uf
+            const { name, email, password, phone, address, number, complement, city, uf
             } = request.body;
     
             const result = await connection('user').update({
                 name,
-                cpf,
                 email,
                 password,
                 phone,
                 address,
                 number,
                 complement,
-                zipcode,
-                neighborhood,
                 city,
                 uf
-            }).where({ id });
+            }).where({ id }).returning(['id', 'name']).then((async function(res) {
+                var reg = res[0]
+                // Salvando log
+                await connection('log').insert({
+                    title: 'Atualização de usuário',
+                    description: `O usuário ${reg.name} atualizou informações`,
+                    user_id: res.id
+                });
+            }));;
 
             return response.json(result);
         } catch (error) {
@@ -119,7 +143,15 @@ module.exports = {
         try {
             const { id } = request.params;
 
-            await connection('user').where({ id }).delete();
+            await connection('user').where({ id }).delete().returning(['id', 'name']).then((async function(res) {
+                var reg = res[0]
+                // Salvando log
+                await connection('log').insert({
+                    title: 'Usuário excluído',
+                    description: `O usuário ${reg.name} saiu do sistema.`,
+                    user_id: res.id
+                });
+            }));
             
             return response.json("Usuário excluído com sucesso"); 
         } catch (error) {
@@ -132,7 +164,17 @@ module.exports = {
             const user_id = request.params.user_id;
             const case_id = request.params.case_id;
 
+            let case_res = await connection('case').where('id', case_id).returning('title');
+            let user_res = await connection('user').where('id', user_id).returning(['id', 'name']);
+
             await connection('users_cases').where('user_id', user_id).andWhere('case_id', case_id).delete();
+            
+            // Salvando log
+            await connection('log').insert({
+                title: 'Cancelamento de voluntariado',
+                description: `O usuário ${user_res[0].name} cancelou o voluntariado na causa ${case_res[0].title}`,
+                user_id: user_res[0].id
+            });
             
             return response.json("Usuário cancelou voluntariado com sucesso"); 
         } catch (error) {

@@ -7,8 +7,6 @@ exports.up = function(knex) {
         table.integer('user_id');
         table.integer('org_id')
         table.timestamp('created_at').defaultTo(knex.fn.now());
-        table.foreign('user_id').references('id').inTable('user')
-        table.foreign('org_id').references('id').inTable('organization');
     });
 };
 
