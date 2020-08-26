@@ -54,17 +54,50 @@ routes.put('/users/:id', celebrate({
 
 routes.delete('/users/:id', UserController.delete);
 
-//routes.get('/orgs', OrgController.get_all_orgs);
+
+routes.get('/orgs', OrgController.get_all_orgs);
+
+routes.get('/orgs/:id', OrgController.get_org);
 
 routes.post('/orgs', celebrate({
     [Segments.BODY]: Joi.object().keys({
         name: Joi.string().required(),
+        responsible: Joi.string(),
         email: Joi.string().required().email(),
-        whatsapp: Joi.string().required().min(10).max(11),
+        password: Joi.string().required(),
+        phone: Joi.string().min(10).max(11),
+        address: Joi.string().required(),
+        number: Joi.number().required(),
+        complement: Joi.string(),
+        zipcode: Joi.string().required(),
+        neighborhood: Joi.string(),
         city: Joi.string().required(),
-        uf: Joi.string().required().length(2)
+        uf: Joi.string().required().length(2),
+        cnpj: Joi.string().length(18),
+        type: Joi.string().required()
     })
 }), OrgController.create);
+
+routes.put('/orgs/:id', celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        name: Joi.string(),
+        responsible: Joi.string(),
+        email: Joi.string().email(),
+        password: Joi.string(),
+        phone: Joi.string().min(10).max(11),
+        address: Joi.string(),
+        number: Joi.number(),
+        complement: Joi.string(),
+        zipcode: Joi.string(),
+        neighborhood: Joi.string(),
+        city: Joi.string(),
+        uf: Joi.string().length(2),
+        cnpj: Joi.string().length(18),
+        type: Joi.string()
+    })
+}), OrgController.update);
+
+routes.delete('/orgs/:id', OrgController.delete);
 
 // routes.post('/cases', celebrate({
 //     [Segments.HEADERS]: Joi.object({authorization: Joi.string().required()}).unknown(),

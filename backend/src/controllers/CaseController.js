@@ -32,8 +32,16 @@ module.exports = {
 
     },
 
-    async get_org_cases(request, response) {
-        
+    async get_cases(request, response) {
+        try {
+            const id = request.params.id;
+
+            const result = await connection('case').where('org_id', id);
+
+            return response.json(result);
+        } catch (error) {
+            return response.json(`O seguinte erro ocorreu: ${error.message}`);
+        }
     },
 
     async update(request, response) {
