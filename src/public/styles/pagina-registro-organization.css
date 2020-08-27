@@ -119,6 +119,7 @@ form .grupo-contato1 .field + .field {
 form button {
     width: 280px;
     height: 56px;
+    cursor: pointer;
 
     background-color: #2fe79e;
     border-radius: 8px;
@@ -143,4 +144,23 @@ form button {
 
 form button:hover {
     background-color: #08a063f1;
+}
+
+.btn-register {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    background-color: #4287f5;
+    cursor: pointer;
+    border: 0;
+    border-radius: 8px;
+    width: 280px;
+    height: 56px;
+    align-items: center;
+    font-size: 16px;
+    color: white;
+    background-color: #4287f5;
+    margin-top: 10px;
+    transition: 400ms;
 }

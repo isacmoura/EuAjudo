@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro da Organização</title>
+    <title>EuAjudo || Login</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
 
@@ -22,7 +22,7 @@
             </a>
         </header>
 
-        <form action="">
+        <form action="/sessions/login" method="POST">
             <h1>Login</h1>
 
            <fieldset>
@@ -34,28 +34,28 @@
                
                 <div class="field">
                     <label for="password">Senha</label>
-                    <input type="text" name="password" required>     
+                    <input type="password" name="password" required>     
                 </div>
                 
                 <p>Quem é você?</p>
-                <input type="radio" name="user" required>
+                <input type="radio" name="type" value="user" required>
                 <label for="user">Usuário</label>
 
-                <input type="radio" name="org" required>
+                <input type="radio" name="type" value="org" required>
                 <label for="org">Organização</label>
 
            </fieldset>
 
             <button type="submit">Entrar</button>
             <div class="field">
-                <button>Cadastrar Usuário</button>
-                <button>Cadastrar Organização</button>
+                <a class="btn-register" href="/user/signup">Usuário</a></a>
+                <a class="btn-register" href="/org/signup">Cadastrar Organização</a>
             </div>
             
         </form>
     
     </div>
     
-    <script src="scripts/pagina-registro-organization.js"></script>
+    <script src="../scripts/pagina-registro-organization.js"></script>
 </body>
 </html>

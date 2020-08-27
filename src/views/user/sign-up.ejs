@@ -3,23 +3,24 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cadastro da Organização</title>
+        <title>EuAjudo || Cadastro do usuário</title>
 
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="../styles/pagina-registro-organization.css">    
+        <link rel="stylesheet" href="../styles/pagina-registro-user.css">
     </head>
 
     <body>
+
         <div id="pagina-registro">
             <header>
-                <a href="http://127.0.0.1:5500/EuAjudo/frontend/pagina-inicial.html">
+                <a href="/">
                     Voltar ao início
                 </a>
             </header>
 
             <form action="/users" method="POST">
-                <h1>Cadastro da Organização</h1>
+                <h1>Cadastro do Usuário</h1>
 
                 <fieldset>
                     <legend>
@@ -82,10 +83,13 @@
                         </div>
                     </div>
                 </fieldset>
+
                 <button type="submit">Cadastrar</button>
+
             </form>
+        
         </div>
         
-        <script src="../scripts/pagina-registro-organization.js"></script>
-</body>
+        <script src="../scripts/pagina-registro-user.js"></script>
+    </body>
 </html>

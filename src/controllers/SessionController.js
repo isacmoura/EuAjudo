@@ -8,7 +8,7 @@ module.exports = {
             const { email, password, type } = request.body;
             let result = null;
             
-            if(type === 'usuario'){
+            if(type === 'user'){
                 result = await connection('user')
                 .where({email})
                 .andWhere({password}).returning('id');
@@ -22,7 +22,11 @@ module.exports = {
             let id = '' + result[0].id;
             var token = jwt.sign({id: id}, authConfig.secret, { expiresIn: '2 days' });
             
-            return response.json({ token });
+            response.cookie('auth', token);
+
+            return response.render('dashboard',
+                { user: result[0]}
+            );
         } catch (error) {
             return response.json(`Login inválido`);
         }

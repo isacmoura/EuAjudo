@@ -131,13 +131,12 @@ routes.get('/login', (req, res) => {
     res.render('login');
 });
 
-routes.get('/usuario/cadastro', (req, res) => {
-    res.render('sign-up-user');
+routes.get('/user/signup', (req, res) => {
+    res.render('org/sign-up');
 });
 
-routes.get('/organizacao/cadastro', (req, res) => {
-    res.render('sign-up-org');
+routes.get('/org/signup', (req, res) => {
+    res.render('org/sign-up');
 })
-
 
 module.exports = routes;
