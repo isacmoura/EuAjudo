@@ -25,15 +25,12 @@ routes.get('/users/:id/cases', UserController.get_all_user_cases);
 routes.post('/users', celebrate({
     [Segments.BODY]: Joi.object().keys({
         name: Joi.string().required(),
-        cpf: Joi.string().required().length(14),
         email: Joi.string().required().email(),
         password: Joi.string().required().min(6),
         phone: Joi.string().required().min(10).max(11),
         address: Joi.string().required(),
         number: Joi.number().required(),
         complement: Joi.string(),
-        zipcode: Joi.string().required(),
-        neighborhood: Joi.string().required(),
         city: Joi.string().required(),
         uf: Joi.string().required().length(2)
     })
@@ -42,15 +39,12 @@ routes.post('/users', celebrate({
 routes.put('/users/:id', celebrate({
     [Segments.BODY]: Joi.object().keys({
         name: Joi.string(),
-        cpf: Joi.string().length(14),
         email: Joi.string().email(),
         password: Joi.string().min(6),
         phone: Joi.string().min(10).max(11),
         address: Joi.string(),
         number: Joi.number(),
         complement: Joi.string(),
-        zipcode: Joi.string(),
-        neighborhood: Joi.string(),
         city: Joi.string(),
         uf: Joi.string().length(2)
     })
@@ -67,38 +61,28 @@ routes.get('/orgs/:id', OrgController.get_org);
 routes.post('/orgs', celebrate({
     [Segments.BODY]: Joi.object().keys({
         name: Joi.string().required(),
-        responsible: Joi.string(),
         email: Joi.string().required().email(),
         password: Joi.string().required(),
         phone: Joi.string().min(10).max(11),
         address: Joi.string().required(),
         number: Joi.number().required(),
         complement: Joi.string(),
-        zipcode: Joi.string().required(),
-        neighborhood: Joi.string(),
         city: Joi.string().required(),
         uf: Joi.string().required().length(2),
-        cnpj: Joi.string().length(18),
-        type: Joi.string().required()
     })
 }), OrgController.create);
 
 routes.put('/orgs/:id', celebrate({
     [Segments.BODY]: Joi.object().keys({
         name: Joi.string(),
-        responsible: Joi.string(),
         email: Joi.string().email(),
         password: Joi.string(),
         phone: Joi.string().min(10).max(11),
         address: Joi.string(),
         number: Joi.number(),
         complement: Joi.string(),
-        zipcode: Joi.string(),
-        neighborhood: Joi.string(),
         city: Joi.string(),
         uf: Joi.string().length(2),
-        cnpj: Joi.string().length(18),
-        type: Joi.string()
     })
 }), OrgController.update);
 
@@ -130,5 +114,11 @@ routes.delete('/cases/:id', CaseController.delete);
 // routes.get('/profile', celebrate({
 //     [Segments.HEADERS]: Joi.object({authorization: Joi.string().required()}).unknown()
 // }), ProfileController.index);
+
+// Rotas de VIEW da aplicação
+
+routes.get('/', (req, res) => {
+    res.render('index');
+})
 
 module.exports = routes;
