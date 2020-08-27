@@ -131,4 +131,13 @@ routes.get('/login', (req, res) => {
     res.render('login');
 });
 
+routes.get('/usuario/cadastro', (req, res) => {
+    res.render('sign-up-user');
+});
+
+routes.get('/organizacao/cadastro', (req, res) => {
+    res.render('sign-up-org');
+})
+
+
 module.exports = routes;
