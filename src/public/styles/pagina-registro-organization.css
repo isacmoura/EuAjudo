@@ -132,8 +132,15 @@ form button {
     margin-top: 40px;
 
     transition: 400ms;
+
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*left: 50%;*/
+    margin-right: -50%;
+    /*transform: translate(-50%, -50%)*/
+    
 }
 
 form button:hover {
-    background-color: rgb(20, 179, 179);
+    background-color: #08a063f1;
 }

@@ -26,15 +26,32 @@
             <h1>Login</h1>
 
            <fieldset>
-               <label for="email">E-mail</label>
-               <input type="email" name="email" required>
+
+                <div class="field">
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" required>
+                </div>
                
-               <label for="senha">Senha</label>
-               <input type="text" name="password" required>
+                <div class="field">
+                    <label for="password">Senha</label>
+                    <input type="text" name="password" required>     
+                </div>
+                
+                <p>Quem é você?</p>
+                <input type="radio" name="user" required>
+                <label for="user">Usuário</label>
+
+                <input type="radio" name="org" required>
+                <label for="org">Organização</label>
+
            </fieldset>
 
             <button type="submit">Entrar</button>
-
+            <div class="field">
+                <button>Cadastrar Usuário</button>
+                <button>Cadastrar Organização</button>
+            </div>
+            
         </form>
     
     </div>
