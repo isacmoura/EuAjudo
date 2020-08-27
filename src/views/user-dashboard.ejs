@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EuAjudo || Dashboard do usuário</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="../styles/user-dashboard.css">    
+    </head>
+
+    <body>
+        <div id="main-container">
+            <header>
+                <span>Bem vindo(a), <a href="/user/profile"><%= user.name %></a></span>
+                <a class="btn-logout" href="/sessions/logout">Sair</a>
+            </header>
+
+            <h1>Ações disponíveis</h1>
+
+            <ul>
+                <% cases.forEach(function(c) { %>
+                    <li>
+                        <strong>Ação:</strong>
+                        <p><%= c.title %></p>
+        
+                        <strong>Descrição:</strong>
+                        <p><%= c.description %></p>
+        
+                        <strong>Organização:</strong>
+                        <p><%= c.name %></p>
+        
+                        <a href="/voluntariar/<%=c.id%>" class="btn-confirm">Voluntariar-se</a>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    </body>
+</html>

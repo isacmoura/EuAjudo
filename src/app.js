@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts')
 const { errors } = require('celebrate');
+const path = require('path');
 
 const app = express();
 
@@ -19,7 +20,7 @@ app.use(errors());
 // EJS Config
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
-app.set('views', __dirname + '/views');
-app.use(express.static(__dirname + '/public'))
+app.set('views', path.join(__dirname, '/views'));
+app.use(express.static(path.join(__dirname, '/public')));
 
 module.exports = app;

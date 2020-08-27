@@ -27,7 +27,7 @@ module.exports = {
                 });
             }));;
 
-            return response.json("Usuário cadastrado com sucesso");
+            return response.json("/");
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }
@@ -35,7 +35,7 @@ module.exports = {
 
     async help_case(request, response) {
         try {
-            const user_id = request.params.user_id;
+            const user_id = request.userId;
             const case_id = request.params.case_id;
 
             const result = await connection('users_cases').insert({ user_id, case_id });
@@ -86,10 +86,10 @@ module.exports = {
 
     async get_user(request, response) {
         try {
-            const id = request.params.id;
+            const id = request.userId;
             const result = await connection('user').where({ id });
 
-            return response.json(result);
+            return result[0];
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }

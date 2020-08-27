@@ -132,11 +132,34 @@ routes.get('/login', (req, res) => {
 });
 
 routes.get('/user/signup', (req, res) => {
-    res.render('org/sign-up');
+    res.render('sign-up-user');
 });
 
 routes.get('/org/signup', (req, res) => {
-    res.render('org/sign-up');
+    res.render('sign-up-org');
+});
+
+routes.get('/user/profile/', authMiddleware, async (req, res) => {
+    const user_result = await UserController.get_user(req, res);
+    res.render('profile',
+    {
+        user: user_result
+    })
+})
+
+routes.get('/user/dashboard', authMiddleware, async (req, res) => {
+    const user_result = await UserController.get_user(req, res);
+    const cases_result = await CaseController.get_all_cases(req, res);
+    console.log(cases_result)
+
+    res.render('user-dashboard', {
+        user: user_result,
+        cases: cases_result,
+    });
+});
+
+routes.get('/org/dashboard', authMiddleware, (req, res) => {
+    res.render('org-dashboard');
 })
 
 module.exports = routes;

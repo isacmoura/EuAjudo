@@ -31,9 +31,13 @@ module.exports = {
 
     async get_all_cases(request, response) {
         try {
-            const results = await connection('case');
+            const results = await connection
+            .select(['case.title', 'case.description', 'case.id', 'organization.id AS o_id',
+            'organization.name'])
+            .from('case')
+            .join('organization', 'organization.id', 'case.org_id')
 
-            return response.json(results);
+            return results;
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }

@@ -7,16 +7,20 @@ module.exports = {
         try {
             const { email, password, type } = request.body;
             let result = null;
+            let address = null;
             
             if(type === 'user'){
                 result = await connection('user')
                 .where({email})
                 .andWhere({password}).returning('id');
 
+                address = '/user/dashboard';
             } else {
                 result = await connection('organization')
                 .where('email', email)
                 .andWhere('password', password).returning('id');
+
+                address = '/org/dashboard';
             }
 
             let id = '' + result[0].id;
@@ -24,11 +28,9 @@ module.exports = {
             
             response.cookie('auth', token);
 
-            return response.render('dashboard',
-                { user: result[0]}
-            );
+            return response.redirect(address)
         } catch (error) {
-            return response.json(`Login inválido`);
+            return response.json('Login inválido');
         }
     },
 

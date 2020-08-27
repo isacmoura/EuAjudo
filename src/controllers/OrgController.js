@@ -25,7 +25,7 @@ module.exports = {
                 });
             }));
 
-            return response.json("Organização cadastrada com sucesso");
+            return response.render("/");
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }
