@@ -23,7 +23,7 @@ module.exports = {
                 });
             }));;
             
-            return response.json({ result });
+            return response.redirect('/org/dashboard');
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }
@@ -45,10 +45,10 @@ module.exports = {
 
     async get_case(request, response) {
         try {
-            const id = request.params.id;
+            const id = request.userId;
             const result = await connection('case').where({ id });
 
-            return response.json(result);
+            return result;
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }
@@ -56,11 +56,10 @@ module.exports = {
 
     async get_cases_from_org(request, response) {
         try {
-            const id = request.params.org_id;
-
+            const id = request.userId;
             const result = await connection('case').where('org_id', id);
 
-            return response.json(result);
+            return result;
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }
@@ -112,7 +111,7 @@ module.exports = {
                     });
                 }));
             
-            return response.json("Ação excluída com sucesso"); 
+            return response.redirect('/org/dashboard'); 
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>EuAjudo || Dashboard do usuário</title>
+        <title>EuAjudo || Dashboard da organização</title>
 
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
 
@@ -13,11 +13,11 @@
     <body>
         <div id="main-container">
             <header>
-                <span>Bem vindo(a), <a href="/user/profile"><%= user.name %></a></span>
+                <span>Bem vinda, <a href="/org/profile"><%= org.name %></a></span>
                 <a class="btn-logout" href="/sessions/logout">Sair</a>
             </header>
 
-            <h1>Ações disponíveis</h1>
+            <h1>Visualize suas ações cadastradas</h1>
 
             <ul>
                 <% cases.forEach(function(c) { %>
@@ -28,10 +28,7 @@
                         <strong>Descrição:</strong>
                         <p><%= c.description %></p>
         
-                        <strong>Organização:</strong>
-                        <p><%= c.name %></p>
-        
-                        <a href="/help/<%=c.id%>" class="btn-confirm">Voluntariar-se</a>
+                        <a href="/delete/case/<%=c.id%>" class="btn-delete">Excluir ação</a>
                     </li>
                 <% }); %>
             </ul>

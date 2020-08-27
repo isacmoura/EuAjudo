@@ -153,7 +153,7 @@ module.exports = {
                 });
             }));
             
-            return response.json("Usuário excluído com sucesso"); 
+            return response.redirect("Usuário excluído com sucesso"); 
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }

@@ -36,7 +36,9 @@ module.exports = {
 
     async logout(request, response) {
         try {
-            return response.json({auth: false, token: null}); 
+            response.cookie('auth', '');
+
+            return response.render(''); 
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }

@@ -43,10 +43,10 @@ module.exports = {
 
     async get_org(request, response) {
         try {
-            const id = request.params.id;
+            const id = request.userId;
             const result = await connection('organization').where({ id });
 
-            return response.json(result);
+            return result[0];
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }

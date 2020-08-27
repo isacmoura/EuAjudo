@@ -18,7 +18,7 @@ routes.post('/sessions/login', celebrate({
     })
 }), SessionController.login);
 
-routes.post('/sessions/logout', SessionController.logout);
+routes.get('/sessions/logout', SessionController.logout);
 
 routes.get('/users', authMiddleware, UserController.get_all_users);
 
@@ -115,11 +115,7 @@ routes.put('/cases/:id', authMiddleware, celebrate({
     })
 }), CaseController.update);
 
-routes.delete('/cases/', authMiddleware, CaseController.delete);
-
-// routes.get('/profile', celebrate({
-//     [Segments.HEADERS]: Joi.object({authorization: Joi.string().required()}).unknown()
-// }), ProfileController.index);
+routes.get('/delete/case/:id', authMiddleware, CaseController.delete);
 
 // Rotas de VIEW da aplicação
 
@@ -150,7 +146,6 @@ routes.get('/user/profile/', authMiddleware, async (req, res) => {
 routes.get('/user/dashboard', authMiddleware, async (req, res) => {
     const user_result = await UserController.get_user(req, res);
     const cases_result = await CaseController.get_all_cases(req, res);
-    console.log(cases_result)
 
     res.render('user-dashboard', {
         user: user_result,
@@ -158,8 +153,14 @@ routes.get('/user/dashboard', authMiddleware, async (req, res) => {
     });
 });
 
-routes.get('/org/dashboard', authMiddleware, (req, res) => {
-    res.render('org-dashboard');
+routes.get('/org/dashboard', authMiddleware, async (req, res) => {
+    const org_result = await OrgController.get_org(req, res);
+    const cases_result = await CaseController.get_cases_from_org(req, res);
+
+    res.render('org-dashboard', {
+        org: org_result,
+        cases: cases_result
+    });
 })
 
 module.exports = routes;
