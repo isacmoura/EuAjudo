@@ -127,7 +127,7 @@ routes.get('/', (req, res) => {
     res.render('index');
 });
 
-app.get('/login', (req, res) => {
+routes.get('/login', (req, res) => {
     res.render('login');
 });
 
