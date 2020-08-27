@@ -6,6 +6,7 @@ const OrgController = require('./controllers/OrgController');
 const CaseController = require('./controllers/CaseController');
 const UserController = require('./controllers/UserController');
 const SessionController = require('./controllers/SessionController');
+const app = require('./app');
 
 const routes = express.Router();
 
@@ -124,6 +125,10 @@ routes.delete('/cases/', authMiddleware, CaseController.delete);
 
 routes.get('/', (req, res) => {
     res.render('index');
-})
+});
+
+app.get('/login', (req, res) => {
+    res.render('login');
+});
 
 module.exports = routes;

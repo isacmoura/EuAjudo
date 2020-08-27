@@ -19,6 +19,7 @@ app.use(errors());
 // EJS Config
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
+app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'))
 
 module.exports = app;

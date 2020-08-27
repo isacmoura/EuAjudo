@@ -52,4 +52,25 @@ body {
     transform: translate(-50%, -50%)
     
 }
+
+.btn-link {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    border: 0;
+    border-radius: 8px;
+    width: 250px;
+    height: 50px;
+    align-items: center;
+    font-size: 20px;
+    color: white;
+    background-color: #2fe79e;
+    margin-top: 150px;
+    position: absolute;
+    /*top: 50%;*/
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+    
 }
