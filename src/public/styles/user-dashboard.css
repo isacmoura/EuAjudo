@@ -25,6 +25,22 @@ a {
     margin-left: auto;
 }
 
+.btn-case {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    border: 0;
+    border-radius: 8px;
+    width: 150px;
+    height: 40px;
+    align-items: center;
+    font-size: 16px;
+    color: white;
+    background-color: orange;
+    margin-left: 620px;
+}
+
 .btn-delete {
     text-decoration: none;
     display: flex;

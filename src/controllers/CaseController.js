@@ -3,7 +3,7 @@ const connection = require('../db/index');
 module.exports = {
     async create(request, response) {
         try {
-            const org_id = request.params.org_id;
+            const org_id = request.userId;
             const { title, description } = request.body;
 
             const case_res = await connection('organization').where('id', org_id).returning('name');

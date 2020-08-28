@@ -163,4 +163,8 @@ routes.get('/org/dashboard', authMiddleware, async (req, res) => {
     });
 })
 
+routes.get('/org/case', authMiddleware, (req, res) => {
+    res.render('create-case');
+})
+
 module.exports = routes;
