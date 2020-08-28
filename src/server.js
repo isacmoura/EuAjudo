@@ -1,3 +1,3 @@
 const app = require('./app');
 
-app.listen(3333, () => console.log('Server running'));
+app.listen(80, () => console.log('Server running'));
