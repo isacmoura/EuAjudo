@@ -6,19 +6,14 @@ EuAjudo é uma aplicação web que promove a interação entre os voluntários e
 # Instalação e execução
 ## Pré-requisitos
 - [Node JS](https://nodejs.org/en/download/)
-- 
-- 
 
 ## Passos
-- Baixe ou clone este repositório (`git clone https://github.com/isacmoura/ambeever.git`)
+- Baixe ou clone este repositório (`git clone https://github.com/isacmoura/EuAjudo.git`)
 - Dentro do diretório do projeto, instale as dependências com `npm install`.
-- Então execute o comando `expo start`.
-- Seguindo o tutorial, abra o aplicativo do Expo em seu dispositivo móvel e escaneie o QR Code gerado no terminal ou na página Web que será aberta.
+- Então execute o comando `nodemon start`, se o servidor não executar, escreva o seguinte comando `npm start`.
 
 # Tecnologias utilizadas
-- React Native
-- Expo
-- Styled Components
-- Redux
-- React Navigation
-- Flexbox
+- Java Script 
+- HTML5
+- CSS3
+- Node JS
