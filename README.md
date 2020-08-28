@@ -6,6 +6,7 @@ EuAjudo é uma aplicação web que promove a interação entre os voluntários e
 # Instalação e execução
 ## Pré-requisitos
 - [Node JS](https://nodejs.org/en/download/)
+- [PostgreSQL](https://www.postgresql.org/download/)
 
 ## Passos
 - Baixe ou clone este repositório (`git clone https://github.com/isacmoura/EuAjudo.git`)
@@ -17,3 +18,8 @@ EuAjudo é uma aplicação web que promove a interação entre os voluntários e
 - HTML5
 - CSS3
 - Node JS
+- JWT
+- Knex
+- Express
+- PostgreSQL
+- EJS
