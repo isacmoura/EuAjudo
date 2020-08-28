@@ -56,7 +56,7 @@ module.exports = {
                 user_id: reg.id
             });
 
-            return response.json("Usuário se voluntariou a uma causa");
+            return response.redirect("/user/profile");
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }

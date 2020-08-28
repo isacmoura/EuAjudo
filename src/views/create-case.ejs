@@ -3,14 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>EuAjudo || Cadastro da Organização</title>
+        <title>EuAjudo || Cadastro do usuário</title>
 
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="../styles/pagina-registro-organization.css">    
+        <link rel="stylesheet" href="../styles/pagina-registro-user.css">
     </head>
 
     <body>
+
         <div id="pagina-registro">
             <header>
                 <a href="/">
@@ -18,8 +19,8 @@
                 </a>
             </header>
 
-            <form action="/orgs" method="POST">
-                <h1>Cadastro da Organização</h1>
+            <form action="/users" method="POST">
+                <h1>Cadastro do Usuário</h1>
 
                 <fieldset>
                     <legend>
@@ -68,23 +69,26 @@
                     <div class="field-group">
                         <div class="field">
                             <label for="uf">UF</label>
-                            <select name="uf" required id="uf" onchange="getCidades()">
+                            <select name="uf" id="uf" required onchange="getCidades()">
                                 <option value="">Selecione o estado</option>
                             </select>
                         </div>
 
                         <div class="field">
                             <label for="city">Cidade</label>
-                            <select name="city" disabled required id="city">
+                            <select name="city" id="city" disabled required>
                                 <option value="">Selecione a cidade</option>
                             </select>                                     
                         </div>
                     </div>
                 </fieldset>
+
                 <button type="submit">Cadastrar</button>
+
             </form>
+        
         </div>
         
-        <script src="../scripts/pagina-registro-organization.js"></script>
-</body>
+        <script src="../scripts/pagina-registro-user.js"></script>
+    </body>
 </html>

@@ -25,7 +25,7 @@ module.exports = {
                 });
             }));
 
-            return response.render("");
+            return response.redirect("/login");
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }
