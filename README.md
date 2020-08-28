@@ -11,10 +11,10 @@ EuAjudo é uma aplicação web que promove a interação entre os voluntários e
 ## Passos
 - Baixe ou clone este repositório (`git clone https://github.com/isacmoura/EuAjudo.git`)
 - Dentro do diretório do projeto, instale as dependências com `npm install`.
-- Então execute o comando `nodemon start`, se o servidor não executar, escreva o seguinte comando `npm start`.
+- Então execute o comando `npm start`.
 
 # Tecnologias utilizadas
-- Java Script 
+- Javascript 
 - HTML5
 - CSS3
 - Node JS
