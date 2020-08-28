@@ -5,9 +5,9 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      database: 'euajudo',
-      user:     'postgres',
-      password: 'postgres'
+      database: process.env.DATABASE,
+      user:     process.env.USER,
+      password: process.env.PASSWORD
     },
     migrations: {
       directory: `${__dirname}/src/db/migrations`
