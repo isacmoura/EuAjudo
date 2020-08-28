@@ -6,6 +6,7 @@ const OrgController = require('./controllers/OrgController');
 const CaseController = require('./controllers/CaseController');
 const UserController = require('./controllers/UserController');
 const SessionController = require('./controllers/SessionController');
+const LogController = require('./controllers/LogController');
 const app = require('./app');
 
 const routes = express.Router();
@@ -36,13 +37,13 @@ routes.post('/users', celebrate({
         phone: Joi.string().required().min(10).max(11),
         address: Joi.string().required(),
         number: Joi.number().required(),
-        complement: Joi.string(),
+        complement: Joi.optional(),
         city: Joi.string().required(),
         uf: Joi.string().required().length(2)
     })
 }), UserController.create)
 
-routes.put('/users/', authMiddleware, celebrate({
+routes.post('/update/user/', authMiddleware, celebrate({
     [Segments.BODY]: Joi.object().keys({
         name: Joi.string(),
         email: Joi.string().email(),
@@ -50,7 +51,7 @@ routes.put('/users/', authMiddleware, celebrate({
         phone: Joi.string().min(10).max(11),
         address: Joi.string(),
         number: Joi.number(),
-        complement: Joi.string(),
+        complement: Joi.optional(),
         city: Joi.string(),
         uf: Joi.string().length(2)
     })
@@ -58,7 +59,7 @@ routes.put('/users/', authMiddleware, celebrate({
 
 routes.delete('/users/', authMiddleware, UserController.delete);
 
-routes.delete('/help/:case_id', authMiddleware, UserController.delete_cause);
+routes.get('/case/delete/:case_id', authMiddleware, UserController.delete_cause);
 
 routes.get('/orgs', authMiddleware, OrgController.get_all_orgs);
 
@@ -72,13 +73,13 @@ routes.post('/orgs', celebrate({
         phone: Joi.string().min(10).max(11),
         address: Joi.string().required(),
         number: Joi.number().required(),
-        complement: Joi.string(),
+        complement: Joi.optional(),
         city: Joi.string().required(),
         uf: Joi.string().required().length(2),
     })
 }), OrgController.create);
 
-routes.put('/orgs/', authMiddleware, celebrate({
+routes.post('/update/orgs/', authMiddleware, celebrate({
     [Segments.BODY]: Joi.object().keys({
         name: Joi.string(),
         email: Joi.string().email(),
@@ -86,7 +87,7 @@ routes.put('/orgs/', authMiddleware, celebrate({
         phone: Joi.string().min(10).max(11),
         address: Joi.string(),
         number: Joi.number(),
-        complement: Joi.string(),
+        complement: Joi.optional(),
         city: Joi.string(),
         uf: Joi.string().length(2),
     })
@@ -137,11 +138,23 @@ routes.get('/org/signup', (req, res) => {
 
 routes.get('/user/profile/', authMiddleware, async (req, res) => {
     const user_result = await UserController.get_user(req, res);
-    res.render('profile',
+    const cases_user = await UserController.get_all_user_cases(req, res);
+
+    res.render('user-profile',
+    {
+        user: user_result,
+        cases: cases_user,
+    })
+});
+
+routes.get('/user/update', authMiddleware, async (req, res) => {
+    const user_result = await UserController.get_user(req, res);
+
+    res.render('user-update',
     {
         user: user_result
     })
-})
+});
 
 routes.get('/user/dashboard', authMiddleware, async (req, res) => {
     const user_result = await UserController.get_user(req, res);
@@ -152,6 +165,24 @@ routes.get('/user/dashboard', authMiddleware, async (req, res) => {
         cases: cases_result,
     });
 });
+
+routes.get('/org/profile', authMiddleware, async (req, res) => {
+    const org = await OrgController.get_org(req, res);
+    const cases = await CaseController.get_cases_from_org(req, res);
+
+    res.render('org-profile', {
+        org: org,
+        cases: cases
+    })
+});
+
+routes.get('/org/update', authMiddleware, async (req, res) => {
+    const org = await OrgController.get_org(req, res);
+
+    res.render('org-update', {
+        org: org
+    })
+})
 
 routes.get('/org/dashboard', authMiddleware, async (req, res) => {
     const org_result = await OrgController.get_org(req, res);
@@ -165,6 +196,16 @@ routes.get('/org/dashboard', authMiddleware, async (req, res) => {
 
 routes.get('/org/case', authMiddleware, (req, res) => {
     res.render('create-case');
+});
+
+routes.get('/logs', authMiddleware, async (req, res) => {
+    const org = await OrgController.get_org(req, res);
+    const logs = await LogController.get_logs(req, res);
+
+    res.render('logs', {
+        log: logs,
+        org: org
+    })
 })
 
 module.exports = routes;

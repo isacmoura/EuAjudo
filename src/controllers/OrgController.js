@@ -54,10 +54,10 @@ module.exports = {
 
     async update(request, response) {
         try {
-            const id = request.params.id;
+            const id = request.userId;
             const { name, email, password, phone, address, number, complement, city, uf } = request.body;
             
-            const result = await connection('organization').update({
+            await connection('organization').update({
                 name,
                 email,
                 password,
@@ -77,7 +77,7 @@ module.exports = {
                 });
             }));;
             
-            return response.json("Organização atualizada com sucesso");
+            return response.redirect('/org/profile');
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }

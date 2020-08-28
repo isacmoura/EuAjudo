@@ -1,6 +1,4 @@
 const connection = require('../db/index');
-const { use } = require('../routes');
-const { connect } = require('../app');
 
 module.exports = {
     async create(request, response) {
@@ -64,11 +62,15 @@ module.exports = {
 
     async get_all_user_cases(request, response) {
         try {
-            const user_id = request.params.id;
+            const user_id = request.userId;
 
-            const result = await connection('users_cases').where('user_id', user_id );
+            const results = await connection
+            .select(['case.title', 'case.description', 'users_cases.case_id'])
+            .from('users_cases')
+            .join('case', 'case.id', 'users_cases.case_id')
+            .where('user_id', user_id);
 
-            return response.json(result);
+            return results;
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }
@@ -95,21 +97,9 @@ module.exports = {
         }
     },
 
-    async get_cases(request, response) {
-        try {
-            const id = request.params.id;
-
-            const result = await connection('users_cases').where('user_id', id);
-
-            return response.json(result);
-        } catch (error) {
-            return response.json(`O seguinte erro ocorreu: ${error.message}`);
-        }
-    },
-
     async update(request, response) {
         try {
-            const id = request.params.id;
+            const id = request.userId;
             const { name, email, password, phone, address, number, complement, city, uf
             } = request.body;
     
@@ -133,7 +123,7 @@ module.exports = {
                 });
             }));;
 
-            return response.json(result);
+            return response.redirect('/user/profile');
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }
@@ -161,7 +151,7 @@ module.exports = {
 
     async delete_cause(request, response) {
         try {
-            const user_id = request.params.user_id;
+            const user_id = request.userId;
             const case_id = request.params.case_id;
 
             let case_res = await connection('case').where('id', case_id).returning('title');
@@ -176,7 +166,7 @@ module.exports = {
                 user_id: user_res[0].id
             });
             
-            return response.json("Usuário cancelou voluntariado com sucesso"); 
+            return response.redirect('/user/profile'); 
         } catch (error) {
             return response.json(`O seguinte erro ocorreu: ${error.message}`);
         }

@@ -38,7 +38,7 @@ a {
     font-size: 16px;
     color: white;
     background-color: orange;
-    margin-left: 620px;
+    margin-left: 540px;
 }
 
 .btn-delete {
@@ -47,6 +47,24 @@ a {
     justify-content: center;
     font-weight: bold;
     background-color: red;
+    cursor: pointer;
+    border: 0;
+    border-radius: 8px;
+    width: 280px;
+    height: 56px;
+    align-items: center;
+    font-size: 16px;
+    color: white;
+    margin-top: 10px;
+    transition: 400ms;
+}
+
+.btn-undo {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    background-color: burlywood;
     cursor: pointer;
     border: 0;
     border-radius: 8px;
@@ -76,6 +94,12 @@ a {
 #main-container header span {
     font-size: 20px;
     margin-left: 24px;
+    color: black;
+}
+#main-container span {
+    font-size: 20px;
+    margin-left: 24px;
+    color: black;
 }
 
 

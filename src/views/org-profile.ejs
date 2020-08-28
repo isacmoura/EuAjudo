@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EuAjudo || Perfil da organização</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="../styles/user-dashboard.css">
+        <link rel="stylesheet" href="../styles/table.css">   
+    </head>
+
+    <body>
+        <div id="main-container">
+            <header>
+                <a href="/org/dashboard">
+                    Voltar para o dashboard
+                </a>
+                <a class="btn-case" href="/org/update">Editar perfil</a>
+                <a class="btn-logout" href="/sessions/logout">Sair</a>
+            </header>
+
+            <h1>Visualize suas informações cadastradas</h1>
+            <div class="user-info">
+                <table class="minimalistBlack">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Telefone</th>
+                            <th>Endereço</th>
+                            <th>Número</th>
+                            <% if(org.complement) { %>
+                                <th>Complemento</th>
+                            <% } %>
+                            <th>Cidade</th>
+                            <th>UF</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <%= org.name %>
+                            </td>
+                            <td>
+                                <%= org.email %>
+                            </td>
+                            <td>
+                                <%= org.phone %>
+                            </td>
+                            <td>
+                                <%= org.address %>
+                            </td>
+                            <td>
+                                <%= org.number %>
+                            </td>
+                            <% if(org.complement) { %>
+                                <td>
+                                    <%= org.complement %>
+                                </td>
+                            <% } %>
+                            <td>
+                                <%= org.city %>
+                            </td>
+                            <td>
+                                <%= org.uf %>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="case-info">
+                <h1>Visualize as ações criadas por você</h1>
+            </div>
+            <table class="minimalistBlack">
+                <thead>
+                    <tr>
+                        <th>Ação</th>
+                        <th>Descrição</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% cases.forEach(function(c) { %>
+                    <tr>
+                        <td> <%= c.title %> </td>
+                        <td> <%= c.description %> </td>
+                        <td><a href="/delete/case/<%=c.id%>">Excluir ação</a></td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EuAjudo || Atualização do Usuário</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="../styles/pagina-registro-organization.css">    
+    </head>
+
+    <body>
+        <div id="pagina-registro">
+            <header>
+                <a href="/user/profile">
+                    Voltar ao perfil
+                </a>
+            </header>
+
+            <form action="/update/user" method="POST">
+                <h1>Atualização dos dados</h1>
+
+                <fieldset>
+                    <div class="field">
+                        <label for="name">Nome</label>
+                        <input type="text" name="name" required value="<%= user.name %>">
+                    </div>
+                    
+                    <div class="field">
+                        <label for="address">Endereço</label>
+                        <input type="text" name="address" required value="<%= user.address %>">
+                    </div>
+
+                    <div class="grupo-contato1">
+                        <div class="field">
+                            <label for="number">Número</label>
+                            <input type="text" name="number" required value="<%= user.number %>">
+                        </div>
+        
+                        <div class="field">
+                            <label for="complement">Complemento</label>
+                            <input type="text" name="complement" value="<%= user.complement %>">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="phone">Telefone</label>
+                        <input type="tel" name="phone" required value="<%= user.phone %>">
+                    </div>
+
+                    <div class="grupo-contato">
+                        <div class="field">
+                            <label for="email">E-mail</label>
+                            <input type="email" name="email" required value="<%= user.email %>">
+                        </div>
+
+                        <div class="field">
+                            <label for="password">Senha</label>
+                            <input type="password" name="password" required value="<%= user.password %>">
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <div class="field">
+                            <label for="uf">UF</label>
+                            <select name="uf" required id="uf" onchange="getCidades()">
+                                <option value="<%= user.uf %>" selected><%= user.uf %></option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="city">Cidade</label>
+                            <select name="city" disabled required id="city">
+                                <option value="<%= user.city %>" selected><%= user.city %></option>
+                            </select>                                     
+                        </div>
+                    </div>
+                </fieldset>
+                <button type="submit">Atualizar</button>
+            </form>
+        </div>
+        
+        <script src="../scripts/pagina-registro-organization.js"></script>
+</body>
+</html>
