@@ -62,22 +62,21 @@
 
                         <div class="field">
                             <label for="password">Senha</label>
-                            <input type="text" name="password" required>
+                            <input type="password" name="password" required>
                         </div>
                     </div>
 
                     <div class="field-group">
                         <div class="field">
                             <label for="uf">UF</label>
-                            <select name="uf" required>
+                            <select name="uf" id="uf" required onchange="getCidades()">
                                 <option value="">Selecione o estado</option>
                             </select>
-                            <input type="hidden" name="estado">
                         </div>
 
                         <div class="field">
                             <label for="city">Cidade</label>
-                            <select name="city" disabled required>
+                            <select name="city" id="city" disabled required>
                                 <option value="">Selecione a cidade</option>
                             </select>                                     
                         </div>
